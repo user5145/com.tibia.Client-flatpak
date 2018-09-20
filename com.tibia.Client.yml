@@ -1,0 +1,82 @@
+app-id: com.tibia.Client
+runtime: org.kde.Platform//5.11
+sdk: org.kde.Sdk//5.11
+
+tags:
+- proprietary
+
+finish-args:
+- "--share=ipc"
+- "--share=network"
+- "--socket=x11"
+- "--device=dri"
+- "--socket=pulseaudio"
+- "--extra-data=tibia.tar.gz:47ae3dc80e892bf57c2729e507eecadf2ff73263eca46c5edc860b43b772ac4f:12048881:12048881:https://ssl-static-tibia.akamaized.net/download/tibia.x64.tar.gz"
+
+command: "start"
+
+build-options:
+  cflags: -O2 -fstack-protector-strong
+  cxxflags: -O2 -fstack-protector-strong
+  ldflags: -fstack-protector-strong -Wl,-z,relro,-z,now
+  prefix: "/app"
+  libdir: "/app/lib"
+
+modules:
+- name: glu
+  sources:
+  - type: archive
+    url: https://gitlab.freedesktop.org/mesa/glu/-/archive/glu-9.0.0/glu-glu-9.0.0.tar.gz
+    sha256: 529abefa4d42f54f2b5a2883054f4f235248ceb20837327ab9895204eb3a4f56
+
+- name: pcre
+  #copied from arch's pkgconfig
+  config-opts:
+      - --enable-unicode-properties
+      - --enable-pcre16
+      - --enable-pcre32
+      - --enable-jit
+      - --enable-pcregrep-libz
+      - --enable-pcregrep-libbz2
+      - --enable-pcretest-libreadline
+  sources:
+  - type: archive
+    url: https://ftp.pcre.org/pub/pcre/pcre-8.42.tar.bz2
+    sha256: 2cd04b7c887808be030254e8d77de11d3fe9d4505c39d4b15d2664ffe8bf9301
+
+
+#(flatpak 1.0.2)per user installacion cannot be handled by apply_extra
+- name: tibia
+  no-autogen: true
+  buildsystem: simple
+  build-commands:
+  - install -d /app/bin
+  - install -Dm555 apply_extra /app/bin
+  - install -Dm555 start /app/bin
+  sources:
+  - type: script
+    dest-filename: apply_extra
+    commands:
+      - "tar -xf /app/extra/tibia.tar.gz -C /app/extra"
+      - "chmod 777 /app/extra/Tibia"
+      - "rm /app/extra/tibia.tar.gz"
+
+  - type: script
+    dest-filename: start
+    commands:
+      - 'pwd=/app/extra/Tibia /app/extra/Tibia/start-tibia-launcher.sh "$@"'
+
+
+- name: resources
+  no-autogen: true
+  buildsystem: simple
+  build-commands:
+  - install -d /app/share/applications
+  - install -Dm555 com.tibia.Client.desktop /app/share/applications
+  - install -d /app/share/icons/hicolor/256x256/apps/
+  - install -Dm555 com.tibia.Client.png /app/share/icons/hicolor/256x256/apps/
+  sources:
+  - type: file
+    path: com.tibia.Client.desktop
+  - type: file
+    path: com.tibia.Client.png

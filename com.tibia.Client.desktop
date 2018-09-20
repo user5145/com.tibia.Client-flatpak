@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Tibia
+Exec=start
+Icon=com.tibia.Client
+Terminal=false
+Type=Application
+StartupNotify=true
+Categories=Game
