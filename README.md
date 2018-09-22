@@ -11,7 +11,7 @@ flatpak wrapper for Tibia's client
 
     flatpak-builder --user --force-clean --install builds com.tibia.Client.yml
     
-### add a repository
+### Add a repository
 
     flatpak --user remote-add --no-gpg-verify --if-not-exists local-repo /home/$USER/.local-repo
 
