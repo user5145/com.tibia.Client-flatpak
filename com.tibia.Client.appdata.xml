@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop">
+    <id>com.tibia.Client.desktop</id>
+    <metadata_license>CC-BY-NC-ND-4.0</metadata_license>
+    <project_license>LicenseRef-proprietary</project_license>
+    <name>com.tibia.Client</name>
+    <summary>Game</summary>
+    <description><p>Game</p></description>
+
+    <url type="homepage">https://www.tibia.com</url>
+
+    <categories>
+        <category>Game</category>
+    </categories>
+
+    <recommends>
+        <memory>512</memory>
+    </recommends>
+
+    <releases>
+        <release date="2018-03-25" version="2019.03.25">
+            <description>
+                <ul>
+                    <li>Tbia.</li>
+                </ul>
+            </description>
+        </release>
+    </releases>
+</component>
