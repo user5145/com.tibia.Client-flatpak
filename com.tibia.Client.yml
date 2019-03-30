@@ -11,7 +11,7 @@ finish-args:
 - "--socket=x11"
 - "--device=dri"
 - "--socket=pulseaudio"
-- "--extra-data=tibia.tar.gz:832217d6411da4052534ddfa680f53ca5d75fbfa72e503a3448264d2723dab86:21664758:21664758:https://ssl-static-tibia.akamaized.net/download/tibia.x64.tar.gz"
+- "--extra-data=tibia.tar.gz:ab2612f2d390ba3267211bd8919024672a039836912ae1a8a8a80ff062f663da:21267794:21267794:https://ssl-static-tibia.akamaized.net/download/tibia.x64.tar.gz"
 
 command: "start"
 
@@ -69,17 +69,19 @@ modules:
       - 'fi'
       - 'pwd=/var/data /var/data/Tibia/start-tibia-launcher.sh "$@"'
 
-
 - name: resources
   no-autogen: true
   buildsystem: simple
   build-commands:
   - install -d /app/share/applications
-  - install -Dm555 com.tibia.Client.desktop /app/share/applications
+  - install -Dm644 com.tibia.Client.desktop /app/share/applications
   - install -d /app/share/icons/hicolor/256x256/apps/
-  - install -Dm555 com.tibia.Client.png /app/share/icons/hicolor/256x256/apps/
+  - install -Dm644 com.tibia.Client.png /app/share/icons/hicolor/256x256/apps/
+  - install -Dm644 com.tibia.Client.appdata.xml /app/share/appdata/com.tibia.Client.appdata.xml
   sources:
   - type: file
     path: com.tibia.Client.desktop
   - type: file
     path: com.tibia.Client.png
+  - type: file
+    path: com.tibia.Client.appdata.xml
