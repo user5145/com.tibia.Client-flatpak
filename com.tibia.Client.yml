@@ -1,6 +1,6 @@
 app-id: com.tibia.Client
-runtime: org.kde.Platform//5.11
-sdk: org.kde.Sdk//5.11
+runtime: org.kde.Platform/x86_64/5.11
+sdk: org.kde.Sdk/x86_64/5.11
 
 tags:
 - proprietary
@@ -57,17 +57,17 @@ modules:
   - type: script
     dest-filename: user-install
     commands:
-      - mkdir "/var/data/tibia"
-      - "tar -xf /app/extra/tibia.tar.gz -C /var/data/"
-      - "chmod 777 /var/data/Tibia"
+    - mkdir "/var/data/tibia"
+    - "tar -xf /app/extra/tibia.tar.gz -C /var/data/"
+    - "chmod 777 /var/data/Tibia"
 
   - type: script
     dest-filename: start
     commands:
-      - 'if [[ ! -f /var/data/Tibia ]]; then'
-      - '  user-install'
-      - 'fi'
-      - 'pwd=/var/data /var/data/Tibia/start-tibia-launcher.sh "$@"'
+    - 'if [[ ! -f /var/data/Tibia ]]; then'
+    - '  user-install'
+    - 'fi'
+    - 'pwd=/var/data /var/data/Tibia/start-tibia-launcher.sh "$@"'
 
 - name: resources
   no-autogen: true
