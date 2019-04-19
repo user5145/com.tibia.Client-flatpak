@@ -11,7 +11,7 @@ finish-args:
 - "--socket=x11"
 - "--device=dri"
 - "--socket=pulseaudio"
-- "--extra-data=tibia.tar.gz:ab2612f2d390ba3267211bd8919024672a039836912ae1a8a8a80ff062f663da:21267794:21267794:https://ssl-static-tibia.akamaized.net/download/tibia.x64.tar.gz"
+- "--extra-data=tibia.tar.gz:8f81098f73ef95d5a20e54a3eaebe9c5137e5332b1e263025075d2c870485217:21263385:21263385:https://ssl-static-tibia.akamaized.net/download/tibia.x64.tar.gz"
 
 command: "start"
 
